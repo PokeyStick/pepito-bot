@@ -1,3 +1,5 @@
 venv/
 .env*
 *.pyc
+manifest.secrets.yml
+

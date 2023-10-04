@@ -1,0 +1,6 @@
+.env*
+venv/
+Dockerfile
+README.md
+manifest.yml
+manifest.secrets.yml

@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pepito-bot
+  labels:
+    name: pepito-bot
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pepito-bot
+  name: pepito-bot
+  namespace: pepito-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pepito-bot
+  template:
+    metadata:
+      labels:
+        app: pepito-bot
+    spec:
+      containers:
+      - image: pokeystick/pepito-bot:arm64-6
+        name: pepito-bot
+        volumeMounts:
+        - name: secret-volume
+          readOnly: true
+          mountPath: "/etc/secret-volume"
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: dotenv
